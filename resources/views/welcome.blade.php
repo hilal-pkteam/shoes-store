@@ -1,7 +1,10 @@
-@extends('layout.app')
-@section('title', 'Home | Shoes Store')
+@include('layouts.header')
 
-@section('content')
-    <h1>Welcome to My Website</h1>
-    <p>This is the home page.</p>
-@endsection
+@include('partials.navbar')
+@include('partials.hero')
+
+<div class="m-16">
+    <h2 class="text-4xl font-medium">Home Page</h2>
+</div>
+
+@include('layouts.footer')
