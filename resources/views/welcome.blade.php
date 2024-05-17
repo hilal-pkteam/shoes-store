@@ -1,4 +1,4 @@
-@include('layouts.header')
+<x-layout>
 
 @include('partials.navbar')
 <form action="/search" method="POST" class="flex items-center my-5 mx-7">
@@ -82,4 +82,4 @@
   </section>
   @include('partials.footer')
 
-@include('layouts.footer')
+</x-layout>
