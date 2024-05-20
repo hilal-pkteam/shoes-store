@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Item;
 
 class UserController extends Controller
 {
     public function index()
     {
-        //
+        $items = Item::all();
+
+        return view('admin.user.admin-dashbaord', ['items' => $items]);
     }
 
     public function create()
@@ -69,12 +72,6 @@ class UserController extends Controller
         }else{
             return redirect()->back()->with('error', 'Invalid credentials');
         }
-    }
-
-    // Admin Dashboard
-    public function dashboard()
-    {
-        return view('admin.user.admin-dashbaord');
     }
 
     // Logout user 
