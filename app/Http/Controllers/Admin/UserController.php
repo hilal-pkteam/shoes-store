@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.admin-create');
+        return view('admin.user.admin-create');
     }
 
     public function store(Request $request)
@@ -39,8 +40,9 @@ class UserController extends Controller
 
             if($user->save())
             {
-                dd("User created successfully");
+                return redirect('/admin/dashboard')->with('success', 'User created successfully');
             }else{
+
                 return redirect()->back()->with('error', 'Something went wrong e.g user creation failed');
             }
         }
@@ -49,22 +51,22 @@ class UserController extends Controller
     // Displaying login form 
     public function login()
     {
-        return view('admin.admin-login');
+        return view('admin.user.admin-login');
     }
 
     // Login user
     public function loginUser(Request $request)
     {
-        $validated = $request->validate([
+        $credentials = $request->validate([
             'email' =>'required|email',
             'password' => 'required|string|min:8|max:16',
         ]);
 
-        if(Auth::attempt($validated))
-        {
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+
             return redirect('/admin/dashboard')->with('success', 'Loged In Successful');
-        }else
-        {
+        }else{
             return redirect()->back()->with('error', 'Invalid credentials');
         }
     }
@@ -72,7 +74,15 @@ class UserController extends Controller
     // Admin Dashboard
     public function dashboard()
     {
-        return view('admin.admin-dashbaord');
+        return view('admin.user.admin-dashbaord');
+    }
+
+    // Logout user 
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('admin/admin-login')->with('success', 'Logged Out Successful');
     }
 
 }
