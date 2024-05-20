@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ItemController;
+use App\Models\Item;
 
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'guest'], function () {
@@ -22,5 +23,7 @@ Route::get('/admin/dashboard', [UserController::class, 'index'])->middleware('au
 // Admin routes ends
 
 Route::get('/', function () {
-    return view('welcome');
+    $items = Item::all();
+
+    return view('welcome', ['items' => $items]);
 });
