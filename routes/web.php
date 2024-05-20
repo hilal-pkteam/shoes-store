@@ -4,9 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ItemController;
 
-Route::get('/admin/admin-create', [UserController::class, 'create']);
-Route::post('/admin/admin-create', [UserController::class,'store']);
-
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'guest'], function () {
         Route::get('/admin-login', [UserController::class, 'login'])->name('admin-login');
