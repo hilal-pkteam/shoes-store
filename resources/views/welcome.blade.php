@@ -19,65 +19,22 @@
   <!-- Cards -->
   <section class="grid grid-cols-1 mx-auto gap-3 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 max-w-7xl sm:mx-5">
     
+    @foreach($items as $item)
     <div class="max-w-sm mx-auto rounded overflow-hidden shadow-md cursor-pointer border border-gray-300">
-        <img class="w-full h-60 object-cover" src="{{ asset('images/dell_xps.jpg') }}" alt="Sunset in the mountains" loading="lazy">
+        <img class="w-full h-60 object-cover" src="{{ asset($item->image) }}" alt="Sunset in the mountains" loading="lazy">
         <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">laptop Name</div>
+        <div class="font-bold text-xl mb-2">{{ $item->name }}</div>
         <p class="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis asperiores reprehenderit possimus. 
+            {{ $item->description }} 
         </p>
         <h3 class="text-base font-bold text-gray-600 mt-2 -mb-3">RS 44444</h3>
         </div>
         <div class="px-6 pt-4 pb-2">
         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Formated Date</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Laptop condition</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ $item->colour }}</span>
         </div>
     </div>
-
-    <div class="max-w-sm mx-auto rounded overflow-hidden shadow-md cursor-pointer border border-gray-300">
-        <img class="w-full h-60 object-cover" src="{{ asset('images/dell_xps.jpg') }}" alt="Sunset in the mountains" loading="lazy">
-        <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">laptop Name</div>
-        <p class="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis asperiores reprehenderit possimus. 
-        </p>
-        <h3 class="text-base font-bold text-gray-600 mt-2 -mb-3">RS 44444</h3>
-        </div>
-        <div class="px-6 pt-4 pb-2">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Formated Date</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Laptop condition</span>
-        </div>
-    </div>
-
-    <div class="max-w-sm mx-auto rounded overflow-hidden shadow-md cursor-pointer border border-gray-300">
-        <img class="w-full h-60 object-cover" src="{{ asset('images/dell_xps.jpg') }}" alt="Sunset in the mountains" loading="lazy">
-        <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">laptop Name</div>
-        <p class="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis asperiores reprehenderit possimus. 
-        </p>
-        <h3 class="text-base font-bold text-gray-600 mt-2 -mb-3">RS 44444</h3>
-        </div>
-        <div class="px-6 pt-4 pb-2">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Formated Date</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Laptop condition</span>
-        </div>
-    </div>
-
-    <div class="max-w-sm mx-auto rounded overflow-hidden shadow-md cursor-pointer border border-gray-300">
-        <img class="w-full h-60 object-cover" src="{{ asset('images/dell_xps.jpg') }}" alt="Sunset in the mountains" loading="lazy">
-        <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">laptop Name</div>
-        <p class="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis asperiores reprehenderit possimus. 
-        </p>
-        <h3 class="text-base font-bold text-gray-600 mt-2 -mb-3">RS 44444</h3>
-        </div>
-        <div class="px-6 pt-4 pb-2">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Formated Date</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Laptop condition</span>
-        </div>
-    </div>
+    @endforeach
 
   </section>
   @include('partials.footer')
