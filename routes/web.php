@@ -8,11 +8,10 @@ use App\Http\Middleware\AdminGuest;
 use App\Models\Item;
 
 Route::prefix('admin')->group(function () {
-    Route::group(['middleware' => 'guest'], function () {
-        Route::get('/admin-login', [UserController::class, 'login'])->name('admin-login');
-        Route::post('/admin-login', [UserController::class, 'loginUser']);
+    
+    Route::get('/admin-login', [UserController::class, 'login'])->middleware(AdminGuest::class)->name('admin.login');
+    Route::post('/admin-login', [UserController::class, 'loginUser'])->middleware(AdminGuest::class);
 
-    });
     Route::get('/item-create', [ItemController::class, 'create']);
     Route::post('item-create', [ItemController::class,'store'])->name('item.store');
 
