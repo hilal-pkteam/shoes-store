@@ -18,10 +18,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/admin-logout', [UserController::class, 'logout'])->name('admin-logout');
 
 
-
     Route::get('/admin-edit/{id}', [ItemController::class, 'edit']);
     Route::put('/admin-update/{id}', [ItemController::class, 'store']);
-    Route::get('/admin/dashboard', [UserController::class, 'index'])->middleware(AdminAuth::class)->name('dashboard');
+    Route::get('/dashboard', [UserController::class, 'index'])->middleware(AdminAuth::class)->name('dashboard');
+
+    Route::delete('/admin/item-delete', [ItemController::class, 'destroy'])->name('item.delete');
     // Admin routes ends
 });
 Route::get('/', function () {
