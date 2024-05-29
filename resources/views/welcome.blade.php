@@ -1,7 +1,7 @@
 <x-layout>
 
 @include('partials.navbar')
-<form action="/search" method="POST" class="flex items-center my-5 mx-7">
+{{-- <form action="/search" method="POST" class="flex items-center my-5 mx-7">
     <div class="relative w-full">
         <input type="text" id="simple-search" name="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Quality Laptops" required="">
     </div>
@@ -9,7 +9,7 @@
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         <span class="sr-only">Search</span>
     </button>
-  </form>
+  </form> --}}
 
 @include('partials.hero')
 
@@ -18,14 +18,14 @@
 
   <!-- Cards -->
   <section class="grid grid-cols-1 mx-auto gap-3 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 max-w-7xl sm:mx-5">
-    
+
     @foreach($items as $item)
     <div class="max-w-sm mx-auto rounded overflow-hidden shadow-md cursor-pointer border border-gray-300">
         <img class="w-full h-60 object-cover" src="{{ asset($item->image) }}" alt="Sunset in the mountains" loading="lazy">
         <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ $item->name }}</div>
         <p class="text-gray-700 text-base">
-            {{ $item->description }} 
+            {{ $item->description }}
         </p>
         <h3 class="text-base font-bold text-gray-600 mt-2 -mb-3">RS 44444</h3>
         </div>

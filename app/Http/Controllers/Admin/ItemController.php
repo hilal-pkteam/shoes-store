@@ -24,7 +24,7 @@ class ItemController extends Controller
         return view('admin.item.create-item');
     }
 
-    public function store(Request $request, $id = null)
+    public function store(Request $request, $id)
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
