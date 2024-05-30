@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Item;
@@ -39,7 +40,7 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->address = $request->address;
             $user->phone_no = $request->phone;
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
 
             if($user->save())
             {
