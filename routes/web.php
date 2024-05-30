@@ -10,7 +10,6 @@ use App\Models\Item;
 Route::prefix('admin')->group(function () {
 
     Route::get('/admin-register', [UserController::class,'create'])->name('admin.register');
-
     Route::post('/admin-register', [UserController::class,'store'])->name('admin.store');
 
     Route::get('/admin-login', [UserController::class, 'login'])->middleware(AdminGuest::class)->name('admin.login');
@@ -20,10 +19,11 @@ Route::prefix('admin')->group(function () {
     Route::post('item-create', [ItemController::class, 'store'])->name('item.store');
 
     Route::get('/admin-logout', [UserController::class, 'logout'])->name('admin-logout');
-
+    Route::get('/admins', [UserController::class, 'adminsList'])->name('adminsList');
 
     Route::get('/admin-edit/{id}', [ItemController::class, 'edit']);
     Route::put('/admin-update/{id}', [ItemController::class, 'store']);
+
     Route::get('/dashboard', [UserController::class, 'index'])->middleware(AdminAuth::class)->name('dashboard');
 
     Route::delete('/admin/item-delete', [ItemController::class, 'destroy'])->name('item.delete');

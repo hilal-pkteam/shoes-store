@@ -75,6 +75,14 @@ class UserController extends Controller
         }
     }
 
+    // List of all the admins
+    public function adminsList()
+    {
+        $admins = User::all();
+
+        return view('admin.user.admins-list', ['admins' => $admins]);
+    }
+
     // Logout user 
     public function logout()
     {
