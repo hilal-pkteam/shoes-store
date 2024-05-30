@@ -6,7 +6,7 @@
             <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
                 <h2 class="text-2xl font-bold mb-6">Create Item</h2>
 
-                <form action="{{ item.store }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+                <form action="{{ route('item.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
                     @csrf
 
                     <!-- Item Name and Price -->
