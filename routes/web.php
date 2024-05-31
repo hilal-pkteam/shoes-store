@@ -14,8 +14,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/admin-login', [UserController::class, 'login'])->middleware(AdminGuest::class)->name('admin.login');
     Route::post('/admin-login', [UserController::class, 'loginUser'])->middleware(AdminGuest::class);
 
+    Route::get('/user-register', [UserController::class, 'register']);
+
     Route::get('/item-create', [ItemController::class, 'create']);
     Route::post('item-create', [ItemController::class, 'store'])->name('item.store');
+
 
     Route::get('/admin-logout', [UserController::class, 'logout'])->name('admin-logout');
 
