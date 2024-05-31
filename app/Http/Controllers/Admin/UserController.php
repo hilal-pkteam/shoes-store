@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Item;
@@ -39,7 +40,7 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->address = $request->address;
             $user->phone_no = $request->phone;
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
 
             if ($user->save()) {
                 return redirect('/admin/dashboard')->with('success', 'User created successfully');
@@ -80,6 +81,14 @@ class UserController extends Controller
         } else {
             return redirect()->back()->with('error', 'Invalid credentials');
         }
+    }
+
+    // List of all the admins
+    public function adminsList()
+    {
+        $admins = User::all();
+
+        return view('admin.user.admins-list', ['admins' => $admins]);
     }
 
     // Logout user

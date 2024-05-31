@@ -8,8 +8,9 @@ use App\Http\Middleware\AdminGuest;
 use App\Models\Item;
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', function () {
-    });
+
+    Route::get('/admin-register', [UserController::class,'create'])->name('admin.register');
+    Route::post('/admin-register', [UserController::class,'store'])->name('admin.store');
 
     Route::get('/admin-login', [UserController::class, 'login'])->middleware(AdminGuest::class)->name('admin.login');
     Route::post('/admin-login', [UserController::class, 'loginUser'])->middleware(AdminGuest::class);
@@ -21,14 +22,17 @@ Route::prefix('admin')->group(function () {
 
 
     Route::get('/admin-logout', [UserController::class, 'logout'])->name('admin-logout');
-
-
+    Route::get('/admins', [UserController::class, 'adminsList'])->name('adminsList');
 
     Route::get('/admin-edit/{id}', [ItemController::class, 'edit']);
     Route::put('/admin-update/{id}', [ItemController::class, 'store']);
-    Route::get('/admin/dashboard', [UserController::class, 'index'])->middleware(AdminAuth::class)->name('dashboard');
+
+    Route::get('/dashboard', [UserController::class, 'index'])->middleware(AdminAuth::class)->name('dashboard');
+
+    Route::delete('/admin/item-delete', [ItemController::class, 'destroy'])->name('item.delete');
     // Admin routes ends
 });
+
 Route::get('/', function () {
     $items = Item::all();
 

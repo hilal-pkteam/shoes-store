@@ -11,7 +11,7 @@
             </div>
             <ul class="hidden md:flex space-x-4 items-center">
                 <li><a href="/admin/dashboard" class="hover:underline">Dashboard</a></li>
-                <li><a href="#" class="hover:underline">Profile</a></li>
+                <li><a href="/admin/admins" class="hover:underline">Users</a></li>
                 <li><a href="/admin/item-create" class="hover:underline">Create</a></li>
                 <li><a href="/admin/admin-logout" class="hover:underline">Logout</a></li>
             </ul>
@@ -19,7 +19,7 @@
         <div x-show="open" class="md:hidden">
             <ul class="flex flex-col space-y-2 mt-2">
                 <li><a href="#" class="hover:underline">Dashboard</a></li>
-                <li><a href="#" class="hover:underline">Profile</a></li>
+                <li><a href="/admin/admins" class="hover:underline">Users</a></li>
                 <li><a href="/admin/item/create" class="hover:underline">Create</a></li>
                 <li><a href="/admin/admin-logout" class="hover:underline">Logout</a></li>
             </ul>

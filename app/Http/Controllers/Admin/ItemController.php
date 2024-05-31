@@ -12,13 +12,7 @@ class ItemController extends Controller
     {
         //
     }
-    public function edit($id)
-    {
-
-        $item = Item::find($id);
-        return view('admin.item.create-item', compact('item'));
-    }
-
+    
     public function create()
     {
         return view('admin.item.create-item');
@@ -40,8 +34,8 @@ class ItemController extends Controller
         if ($validated) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
-
-            $item = $id ? Item::find($id) : new Item;
+            
+            $item = new Item();
             $item->name = $request->name;
             $item->price = $request->price;
             $item->description = $request->description;
@@ -53,10 +47,43 @@ class ItemController extends Controller
             $item->created_by = auth()->user()->id;
 
             if ($item->save()) {
-                return redirect('/admin/admin/dashboard')->with('success', 'Item created successfully');
+                return redirect('/admin/dashboard')->with('success', 'Item created successfully');
             } else {
                 return redirect()->back()->with('error', 'Something went wrong e.g item creation failed');
             }
         }
     }
+
+    public function edit($id)
+    {
+        $item = Item::find($id);
+        return view('admin.item.create-item', compact('item'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required|max:255',
+            'description' => 'required|max:255',
+            'size' => 'required|max:255',
+            'colour' => 'required|max:255',
+            'category' => 'required|max:255',
+            'tags' => 'required|max:255',
+        ]);
+
+        if ($validated) {
+            $item = Item::find($id);
+
+
+        }
+    }
+
+    public function delete($id)
+    {
+        $item = Item::find($id);
+        $item->delete();
+        return redirect('/admin/dashboard')->with('success', 'Item deleted successfully');
+    }
+   
 }
